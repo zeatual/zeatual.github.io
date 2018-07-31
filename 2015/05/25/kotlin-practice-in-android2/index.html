@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="上一篇中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。 Step 1需要先给AS安装Kotlin环境的必须插件。CMD+, 打开AS的 Preferences 界面搜索plugin，如下图，点击 Install JetBrains Plugin…  然后搜索Kotlin，如图，Ko">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin for Android (Ⅱ)">
+<meta property="og:url" content="http://zeatual.com/2015/05/25/kotlin-practice-in-android2/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="上一篇中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。 Step 1需要先给AS安装Kotlin环境的必须插件。CMD+, 打开AS的 Preferences 界面搜索plugin，如下图，点击 Install JetBrains Plugin…  然后搜索Kotlin，如图，Ko">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p1.png">
+<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p2.png">
+<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p3.png">
+<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p4.png">
+<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p5.png">
+<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p6.png">
+<meta property="og:updated_time" content="2018-07-31T07:11:55.579Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin for Android (Ⅱ)">
+<meta name="twitter:description" content="上一篇中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。 Step 1需要先给AS安装Kotlin环境的必须插件。CMD+, 打开AS的 Preferences 界面搜索plugin，如下图，点击 Install JetBrains Plugin…  然后搜索Kotlin，如图，Ko">
+<meta name="twitter:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zeatual.com/2015/05/25/kotlin-practice-in-android2/"/>
+
+
+
+
+
+  <title>Kotlin for Android (Ⅱ) | Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zeatual.com/2015/05/25/kotlin-practice-in-android2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeatual">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin for Android (Ⅱ)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-25T00:00:00+08:00">
+                2015-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="/articles/kotlin-practice-in-android1/">上一篇</a>中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。</p>
+<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a><strong>Step 1</strong></h3><p>需要先给AS安装Kotlin环境的必须插件。<strong>CMD+,</strong> 打开AS的 Preferences 界面搜索plugin，如下图，点击 <strong>Install JetBrains Plugin…</strong></p>
+<p><img src="/images/kotlin-practice-in-android2/p1.png" alt="P1"></p>
+<p>然后搜索Kotlin，如图，<strong>Kotlin</strong> 和 <strong>Kotlin Extensions For Android</strong> 这两个插件是今天的主角，前者是AS支持Kotlin编译的必须插件，后者稍后介绍。全部安装，重启AS。现在可以新创建一个项目，作为接下来步骤的例子。</p>
+<p><img src="/images/kotlin-practice-in-android2/p2.png" alt="P2"></p>
+<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a><strong>Step 2</strong></h3><p>在Kotlin插件更新之后，在新项目中构建Kotlin变得非常容易。如果安装成功，打开<strong>Code</strong>菜单会发现最后一行多了一个选项<strong>Convert Java File to Kotlin File</strong>，在MainActivity中选择此项，也可以选中MainActivity然后使用快捷键<strong>OPTION+SHIFT+CMD+J</strong>。</p>
+<p><img src="/images/kotlin-practice-in-android2/p3.png" alt="P3"></p>
+<p>一键就把MainActivity.java转成了MainActivity.kt</p>
+<p><img src="/images/kotlin-practice-in-android2/p4.png" alt="P4"></p>
+<p>接下来打开<strong>Tools</strong>菜单会看到<strong>Kotlin</strong>子选单，选择<strong>Configure kotlin in project</strong>一键就可以让AS自动完成所有Kotlin的配置。这里需要注意，必须先有一个.kt文件AS才会认为需要配置Kotlin环境，从而自动完成配置。</p>
+<p><img src="/images/kotlin-practice-in-android2/p5.png" alt="P5"></p>
+<p>完成配置以后，会自动跳到app模块的build.gradle配置文件，其实配置Kotlin环境主要就是在build.gradle中添加一些配置，只不过AS可以一键自动完成，省去了很多麻烦，看下构建文件的变化，除了除了一些Kotlin所需的一些基本依赖意外，可以注意到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sourceSets &#123;</span><br><span class="line">    main.java.srcDirs += &apos;src/main/kotlin&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由此可见，上篇文章中也曾提到过，在同一个项目中Kotlin可以和Java混写，单位了项目结构的清晰和可读性，最好把.kt文件都同意放在另一个目录中，由自动生成的配置可以看出，是与java平级的kotlin目录。但要注意的是，这一步AS目前还不会自动完成，因此我们需要手动创建目录和对应的包，并把.kt文件移过来。</p>
+<p><img src="/images/kotlin-practice-in-android2/p6.png" alt="P6"></p>
+<p>至此，其实使用Kotlin所需的一切就已经都就绪了，是不是很简单？但还必须要隆重介绍的是接下来这个插件。</p>
+<h3 id="Kotlin-Extensions-For-Android"><a href="#Kotlin-Extensions-For-Android" class="headerlink" title="Kotlin Extensions For Android"></a><strong>Kotlin Extensions For Android</strong></h3><p>在Android开发中，所有开发者都知道findviewById()的麻烦。当然，你可以说你会用ButterKnife之类的注入库。但如果我告诉你现在连一行多余的代码都不用写了会怎样？好了，直接进入主题。</p>
+<p>如果Step 1执行顺利，现在你的AS已经有了extension插件，继续以Step 2中新建的项目为例，现在要将MainActivity中将“Hello world!”改为“Hello Kotlin!”。首先打开<strong>activity_main.xml</strong>给TextView加上id。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:id=&quot;@+id/textView&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:text=&quot;@string/hello_world&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>现在打开MainActivity.kt，加上依赖包：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import kotlinx.android.synthetic.activity_main.*</span><br></pre></td></tr></table></figure>
+<p>直接在onCreate()方法中修改TextView的显示的值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: android.os.Bundle?) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState)</span><br><span class="line">    setContentView(com.zeatual.myapplication.R.layout.activity_main)</span><br><span class="line">    textView.setText(&quot;Hello Kotlin!&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你没有看错，就是这么简单，我想至此大家应该自己也能明白这是怎么回事。只需要注意两点：</p>
+<ol>
+<li>kotlinx.android.synthetic.activity_main.* 中的 activit_main即为相应xml布局文件的名字；</li>
+<li>甚至不用声明就可以直接调用的view的变量名即为xml文件中id的值。</li>
+</ol>
+<p>关于kotlin最最基本的介绍就在这里告一段落。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/12/kotlin-practice-in-android1/" rel="next" title="Kotlin for Android (Ⅰ)">
+                <i class="fa fa-chevron-left"></i> Kotlin for Android (Ⅰ)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/22/how-to-become-a-designer-without-going-to-design-school/" rel="prev" title="如何自学成为一名设计师（译）">
+                如何自学成为一名设计师（译） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zeatual</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1"><span class="nav-number">1.</span> <span class="nav-text">Step 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2"><span class="nav-number">2.</span> <span class="nav-text">Step 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kotlin-Extensions-For-Android"><span class="nav-number">3.</span> <span class="nav-text">Kotlin Extensions For Android</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeatual</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="几年前，Android开发者还总是面临着诸多问题，比如难用的开发工具、难以统一的UI、以及冗长的java代码等等。而就在去年，随着全新的设计语言Material Design的推出和AndroidStudio 1.0正式版的发布，Android开发似乎终于迎来了质变。广大开发者的关注点自然也聚焦到了开发语言上。 这篇文章想要说的是众多可以用来开发Android APP语言中的一种，叫做Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin for Android (Ⅰ)">
+<meta property="og:url" content="http://zeatual.com/2015/05/12/kotlin-practice-in-android1/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="几年前，Android开发者还总是面临着诸多问题，比如难用的开发工具、难以统一的UI、以及冗长的java代码等等。而就在去年，随着全新的设计语言Material Design的推出和AndroidStudio 1.0正式版的发布，Android开发似乎终于迎来了质变。广大开发者的关注点自然也聚焦到了开发语言上。 这篇文章想要说的是众多可以用来开发Android APP语言中的一种，叫做Kotlin">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-31T07:11:51.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin for Android (Ⅰ)">
+<meta name="twitter:description" content="几年前，Android开发者还总是面临着诸多问题，比如难用的开发工具、难以统一的UI、以及冗长的java代码等等。而就在去年，随着全新的设计语言Material Design的推出和AndroidStudio 1.0正式版的发布，Android开发似乎终于迎来了质变。广大开发者的关注点自然也聚焦到了开发语言上。 这篇文章想要说的是众多可以用来开发Android APP语言中的一种，叫做Kotlin">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zeatual.com/2015/05/12/kotlin-practice-in-android1/"/>
+
+
+
+
+
+  <title>Kotlin for Android (Ⅰ) | Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zeatual.com/2015/05/12/kotlin-practice-in-android1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeatual">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin for Android (Ⅰ)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-12T00:00:00+08:00">
+                2015-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>几年前，Android开发者还总是面临着诸多问题，比如难用的开发工具、难以统一的UI、以及冗长的java代码等等。而就在去年，随着全新的设计语言<a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="noopener">Material Design</a>的推出和AndroidStudio 1.0正式版的发布，Android开发似乎终于迎来了质变。广大开发者的关注点自然也聚焦到了开发语言上。</p>
+<p>这篇文章想要说的是众多可以用来开发Android APP语言中的一种，叫做<a href="http://kotlinlang.org/" target="_blank" rel="noopener">Kotlin</a>。Kotlin是Jetbrains公司起初用于内部开发的而发起的一个开源项目，Kotlin名字的由来也正是这个开发小组的所在地，位于圣皮尔伯格附近一个小岛的名字。Kotlin也是基于JVM的，要介绍Kotlin的原因是因为它与Java具有很高的互通性和IDE对其良好的支持，还有当然也是最重要的，它相对于java作为语言本身的优越性。</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a><strong>基本语法</strong></h3><p>Kotlin具有丰富的特性，<a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="noopener">官方文档</a>有详尽的介绍和高阶应用，作为快速介绍我只挑出一些自觉比较有趣的地方。</p>
+<ul>
+<li><strong>null安全性</strong></li>
+</ul>
+<p>在Kotlin中，类似于Swift的可选类型，程序员的好朋友空指针异常(NPE)会在编译时检查。例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a: String = &quot;abc&quot;</span><br><span class="line">a = null // 编译报错</span><br><span class="line"></span><br><span class="line">var b: String? = null // 编译通过</span><br><span class="line">b = &quot;Hello Kotlin&quot;</span><br><span class="line">b.length // 编译报错</span><br><span class="line"></span><br><span class="line">if (b != null) &#123;</span><br><span class="line">    b.length // 编译通过</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ?:(Elvis 操作符) 当操作符左面有可能为空时使用，若为空返回右面的值</span><br><span class="line">val len = b?.length ?: -1</span><br><span class="line"></span><br><span class="line">val len = x!!.length // !!强制认为不为null，慎用</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>扩展方法</strong></li>
+</ul>
+<p>在Kotlin中，可以方便的扩展已有类中的方法。这不仅可以扩展Kotlin类的方法，由于良好的互通性，也可以用于扩展已有Java类中的方法。比如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public TextView.getString() : String &#123;</span><br><span class="line">    return this.getText().toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var text: String = textView.getString();</span><br></pre></td></tr></table></figure></p>
+<p>有了这样的途径，我们就可以扩展很多实际业务需要而Android API中用起来并不是很方便的方法。这样一来，就可以避免创建一些类似于StringUtil这样可以提供静态方法的工具类。</p>
+<ul>
+<li><strong>data class</strong></li>
+</ul>
+<p>无论是采用MVC还是MVP架构，通常我们都要创建很多数据模型。在Kotlin中，class可以添加data前缀修饰，这样以来，编译器会自动为此类创建getter/setter,toString,hashCode,equals,copy方法，也就是说代码会大大的简化，如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// java</span><br><span class="line">public class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">    	this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getAge() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;Person&#123;name=\&apos;&quot; + name + &quot;\&apos;&quot; +</span><br><span class="line">                &quot;, age=\&apos;&quot; + age + &quot;\&apos;&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// kotlin</span><br><span class="line">data class Person(var name: String, var age: Int)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>Lambda表达式</strong></li>
+</ul>
+<p>Lambda表达式相信大家都不陌生，Java8中也引入对Lambda表达式的支持。用最常见的OnClickListener举例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view.setOnClickListener(&#123; println(&quot;Hello world!&quot;) &#125;)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>其他</strong></li>
+</ul>
+<p>这里是关于一些我认为Kotlin语法中值得一提的亮点，没有单独列出来，在这里统一作简要说明：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun cases(obj: Any): String = when (obj) &#123;</span><br><span class="line">    1          -&gt; &quot;One&quot;</span><br><span class="line">    &quot;Hello&quot;    -&gt; &quot;Greeting&quot;</span><br><span class="line">    is Long    -&gt; &quot;Long&quot;</span><br><span class="line">    !is String -&gt; &quot;Not a string&quot;</span><br><span class="line">    else       -&gt; &quot;Unknown&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面这段代码声明并定义了一个函数，相信一看就明白函数的功能，有几点值得我们注意：</p>
+<ol>
+<li>cases是函数名，括号中的obj是参数名，Any类似于java中的Object是参数类型，而String对应函数的返回值类型</li>
+<li>when表达式：类似于switch/case语句，但相比之下要强大的多，条件不限制类型</li>
+<li>“is”类似于java中的“instance of”用于判断类型，“!”操作符取非</li>
+<li>我们注意到表达式可以直接作为函数的返回值</li>
+</ol>
+<p>关于循环在Kotlin中也得到了简化：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (i in 1..5) &#123;</span><br><span class="line">    println(&quot;I&apos;m No.$&#123;i&#125;&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>“..”用于范围指定，同时可以注意到在字符串中嵌入变量可以使用“${}”引入。</p>
+<p>Kotlin语法的好处和便捷的用法远远不止以上所提及的这几点，学习语法再次强烈推荐<a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="noopener">官方文档</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/24/my-first-post/" rel="next" title="First Post">
+                <i class="fa fa-chevron-left"></i> First Post
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/25/kotlin-practice-in-android2/" rel="prev" title="Kotlin for Android (Ⅱ)">
+                Kotlin for Android (Ⅱ) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zeatual</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeatual</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
