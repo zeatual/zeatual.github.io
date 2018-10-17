@@ -105,24 +105,17 @@
 
 
 
-<meta name="description" content="上一篇中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。 Step 1需要先给AS安装Kotlin环境的必须插件。CMD+, 打开AS的 Preferences 界面搜索plugin，如下图，点击 Install JetBrains Plugin…  然后搜索Kotlin，如图，Ko">
+<meta name="description" content="背景是公司的产品需要为私有部署客户提供私有API版本的移动客户端。在 Android 客户端中，需要根据不同的客户配置不同的 server host。现有的方案是在 Jenkins 上搭建了一个自动化打包流程，给实施工程师的同事们提供了一个可视化的配置页面，填写对应客户的自定义 host，然后写入环境变量。在 Android 的构建打包过程中，读取存好的值写入 manifest 文件以实现动态的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin for Android (Ⅱ)">
-<meta property="og:url" content="http://zeatual.com/2015/05/25/kotlin-practice-in-android2/index.html">
+<meta property="og:title" content="利用重签机制实现多渠道分发">
+<meta property="og:url" content="http://zeatual.com/2018/10/17/anroind-resign/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="上一篇中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。 Step 1需要先给AS安装Kotlin环境的必须插件。CMD+, 打开AS的 Preferences 界面搜索plugin，如下图，点击 Install JetBrains Plugin…  然后搜索Kotlin，如图，Ko">
+<meta property="og:description" content="背景是公司的产品需要为私有部署客户提供私有API版本的移动客户端。在 Android 客户端中，需要根据不同的客户配置不同的 server host。现有的方案是在 Jenkins 上搭建了一个自动化打包流程，给实施工程师的同事们提供了一个可视化的配置页面，填写对应客户的自定义 host，然后写入环境变量。在 Android 的构建打包过程中，读取存好的值写入 manifest 文件以实现动态的">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p1.png">
-<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p2.png">
-<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p3.png">
-<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p4.png">
-<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p5.png">
-<meta property="og:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p6.png">
-<meta property="og:updated_time" content="2018-07-31T07:11:55.579Z">
+<meta property="og:updated_time" content="2018-10-17T08:55:38.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kotlin for Android (Ⅱ)">
-<meta name="twitter:description" content="上一篇中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。 Step 1需要先给AS安装Kotlin环境的必须插件。CMD+, 打开AS的 Preferences 界面搜索plugin，如下图，点击 Install JetBrains Plugin…  然后搜索Kotlin，如图，Ko">
-<meta name="twitter:image" content="http://zeatual.com/images/kotlin-practice-in-android2/p1.png">
+<meta name="twitter:title" content="利用重签机制实现多渠道分发">
+<meta name="twitter:description" content="背景是公司的产品需要为私有部署客户提供私有API版本的移动客户端。在 Android 客户端中，需要根据不同的客户配置不同的 server host。现有的方案是在 Jenkins 上搭建了一个自动化打包流程，给实施工程师的同事们提供了一个可视化的配置页面，填写对应客户的自定义 host，然后写入环境变量。在 Android 的构建打包过程中，读取存好的值写入 manifest 文件以实现动态的">
 
 
 
@@ -152,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://zeatual.com/2015/05/25/kotlin-practice-in-android2/"/>
+  <link rel="canonical" href="http://zeatual.com/2018/10/17/anroind-resign/"/>
 
 
 
 
 
-  <title>Kotlin for Android (Ⅱ) | Blog</title>
+  <title>利用重签机制实现多渠道分发 | Blog</title>
   
 
 
@@ -265,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zeatual.com/2015/05/25/kotlin-practice-in-android2/">
+    <link itemprop="mainEntityOfPage" href="http://zeatual.com/2018/10/17/anroind-resign/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zeatual">
@@ -282,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kotlin for Android (Ⅱ)</h1>
+          <h1 class="post-title" itemprop="name headline">利用重签机制实现多渠道分发</h1>
         
 
         <div class="post-meta">
@@ -294,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-25T00:00:00+08:00">
-                2015-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-17T00:00:00+08:00">
+                2018-10-17
               </time>
             
 
@@ -332,35 +325,16 @@
       
 
       
-        <p><a href="/articles/kotlin-practice-in-android1/">上一篇</a>中介绍了Kotlin的基本语法，这篇来讲一下在AndroidStudio中的具体使用方法。首先要说的是，截稿时我使用的AndroidStudio版本是1.2.1.1。</p>
-<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a><strong>Step 1</strong></h3><p>需要先给AS安装Kotlin环境的必须插件。<strong>CMD+,</strong> 打开AS的 Preferences 界面搜索plugin，如下图，点击 <strong>Install JetBrains Plugin…</strong></p>
-<p><img src="/images/kotlin-practice-in-android2/p1.png" alt="P1"></p>
-<p>然后搜索Kotlin，如图，<strong>Kotlin</strong> 和 <strong>Kotlin Extensions For Android</strong> 这两个插件是今天的主角，前者是AS支持Kotlin编译的必须插件，后者稍后介绍。全部安装，重启AS。现在可以新创建一个项目，作为接下来步骤的例子。</p>
-<p><img src="/images/kotlin-practice-in-android2/p2.png" alt="P2"></p>
-<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a><strong>Step 2</strong></h3><p>在Kotlin插件更新之后，在新项目中构建Kotlin变得非常容易。如果安装成功，打开<strong>Code</strong>菜单会发现最后一行多了一个选项<strong>Convert Java File to Kotlin File</strong>，在MainActivity中选择此项，也可以选中MainActivity然后使用快捷键<strong>OPTION+SHIFT+CMD+J</strong>。</p>
-<p><img src="/images/kotlin-practice-in-android2/p3.png" alt="P3"></p>
-<p>一键就把MainActivity.java转成了MainActivity.kt</p>
-<p><img src="/images/kotlin-practice-in-android2/p4.png" alt="P4"></p>
-<p>接下来打开<strong>Tools</strong>菜单会看到<strong>Kotlin</strong>子选单，选择<strong>Configure kotlin in project</strong>一键就可以让AS自动完成所有Kotlin的配置。这里需要注意，必须先有一个.kt文件AS才会认为需要配置Kotlin环境，从而自动完成配置。</p>
-<p><img src="/images/kotlin-practice-in-android2/p5.png" alt="P5"></p>
-<p>完成配置以后，会自动跳到app模块的build.gradle配置文件，其实配置Kotlin环境主要就是在build.gradle中添加一些配置，只不过AS可以一键自动完成，省去了很多麻烦，看下构建文件的变化，除了除了一些Kotlin所需的一些基本依赖意外，可以注意到：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sourceSets &#123;</span><br><span class="line">    main.java.srcDirs += &apos;src/main/kotlin&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由此可见，上篇文章中也曾提到过，在同一个项目中Kotlin可以和Java混写，单位了项目结构的清晰和可读性，最好把.kt文件都同意放在另一个目录中，由自动生成的配置可以看出，是与java平级的kotlin目录。但要注意的是，这一步AS目前还不会自动完成，因此我们需要手动创建目录和对应的包，并把.kt文件移过来。</p>
-<p><img src="/images/kotlin-practice-in-android2/p6.png" alt="P6"></p>
-<p>至此，其实使用Kotlin所需的一切就已经都就绪了，是不是很简单？但还必须要隆重介绍的是接下来这个插件。</p>
-<h3 id="Kotlin-Extensions-For-Android"><a href="#Kotlin-Extensions-For-Android" class="headerlink" title="Kotlin Extensions For Android"></a><strong>Kotlin Extensions For Android</strong></h3><p>在Android开发中，所有开发者都知道findviewById()的麻烦。当然，你可以说你会用ButterKnife之类的注入库。但如果我告诉你现在连一行多余的代码都不用写了会怎样？好了，直接进入主题。</p>
-<p>如果Step 1执行顺利，现在你的AS已经有了extension插件，继续以Step 2中新建的项目为例，现在要将MainActivity中将“Hello world!”改为“Hello Kotlin!”。首先打开<strong>activity_main.xml</strong>给TextView加上id。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:id=&quot;@+id/textView&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:text=&quot;@string/hello_world&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>现在打开MainActivity.kt，加上依赖包：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import kotlinx.android.synthetic.activity_main.*</span><br></pre></td></tr></table></figure>
-<p>直接在onCreate()方法中修改TextView的显示的值：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: android.os.Bundle?) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState)</span><br><span class="line">    setContentView(com.zeatual.myapplication.R.layout.activity_main)</span><br><span class="line">    textView.setText(&quot;Hello Kotlin!&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>你没有看错，就是这么简单，我想至此大家应该自己也能明白这是怎么回事。只需要注意两点：</p>
-<ol>
-<li>kotlinx.android.synthetic.activity_main.* 中的 activit_main即为相应xml布局文件的名字；</li>
-<li>甚至不用声明就可以直接调用的view的变量名即为xml文件中id的值。</li>
-</ol>
-<p>关于kotlin最最基本的介绍就在这里告一段落。</p>
+        <p>背景是公司的产品需要为私有部署客户提供私有API版本的移动客户端。在 Android 客户端中，需要根据不同的客户配置不同的 server host。现有的方案是在 Jenkins 上搭建了一个自动化打包流程，给实施工程师的同事们提供了一个可视化的配置页面，填写对应客户的自定义 host，然后写入环境变量。在 Android 的构建打包过程中，读取存好的值写入 manifest 文件以实现动态的 host 配置。</p>
+<p>这的确是一个可行方案，但缺点是，每次都要跑完一次完整的 build 过程，当前项目的规模构建平均时间大概在12分钟左右。然而遇到版本升级，需要给私有部署客户升级客户端时，其实都是同一个版本，不同的仅仅是 manifest 中的配置，重新构建打包耗费了大量不必要的时间，影响了实施同事的工作效率。</p>
+<p>如果仅仅是更改 manifest 文件，就可以利用反编译和重签机制了。脚本使用 Python 编写，使用到的工具有 <code>apktool</code>，<code>apksinger</code>和  Python 的 xml 库<code>xml.etree.ElementTree</code>。</p>
+<p>修改原来的 Android build 脚本，首先从阿里云查询是否已经存在当前要构建的版本，如果没有就走原来的重新打包流程，结束后上传至阿里云归档。如果有就走新的重签机制。</p>
+<h3 id="Step-1-反编译-APK"><a href="#Step-1-反编译-APK" class="headerlink" title="Step 1 反编译 APK"></a>Step 1 反编译 APK</h3><p>从阿里云下载已有 apk 到 Jenkins 服务器。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apktool d -s your_app.apk</span><br></pre></td></tr></table></figure></p>
+<p>使用 apktool 反编译 APK，<code>-s</code>是保留src，因为只是修改 manifest 文件，跳过代码部分可以节省一些反编译的时间。</p>
+<h3 id="Step-2-修改-AndroidManifest-xml"><a href="#Step-2-修改-AndroidManifest-xml" class="headerlink" title="Step 2 修改 AndroidManifest.xml"></a>Step 2 修改 AndroidManifest.xml</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import xml.etree.ElementTree as ET</span><br><span class="line"></span><br><span class="line">ET.register_namespace(&apos;android&apos;, &quot;http://schemas.android.com/apk/res/android&quot;)</span><br><span class="line">tree = ET.parse(&quot;your_app/AndroidManifest.xml&quot;)</span><br><span class="line">root = tree.getroot()</span><br><span class="line">application = root.find(&apos;application&apos;)</span><br><span class="line">for meta_data in application.findall(&apos;meta-data&apos;):</span><br><span class="line">    if meta_data.get(&apos;&#123;http://schemas.android.com/apk/res/android&#125;name&apos;) == &apos;field.want.to.replace&apos;:</span><br><span class="line">        meta_data.set(&apos;&#123;http://schemas.android.com/apk/res/android&#125;value&apos;, newValue)</span><br><span class="line">tree.write(&apos;your_app/AndroidManifest.xml&apos;, &apos;utf-8&apos;, True)</span><br></pre></td></tr></table></figure>
+<p>值得注意的是需要给 ElementTree 注册 Android 的命名空间，否则最后写出来的文件<code>android</code>命名空间都会变成<code>namespace1</code>。</p>
+<h3 id="Step-3-重新打包签名"><a href="#Step-3-重新打包签名" class="headerlink" title="Step 3 重新打包签名"></a>Step 3 重新打包签名</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apktool b -o unaligned_app.apk your_app</span><br><span class="line">zipalign -f 4 unaligned_app.apk unsigned_app.apk</span><br><span class="line">apksigner sign --ks keystore.jks --ks-key-alias your_alias --ks-pass pass:you_key_store_password --key-pass pass:your_key_password signed_app.apk</span><br></pre></td></tr></table></figure>
+<p>替换了新的方案以后，整个打包流程 Android 构建的部分从原先的12分钟缩减到了平均不到1分钟的水平，极大的提升了打包效率。</p>
 
       
     </div>
@@ -385,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/12/kotlin-practice-in-android1/" rel="next" title="Kotlin for Android (Ⅰ)">
-                <i class="fa fa-chevron-left"></i> Kotlin for Android (Ⅰ)
+              <a href="/2018/08/02/plugin-framework-preface/" rel="next" title="插件化的过去、现在与未来">
+                <i class="fa fa-chevron-left"></i> 插件化的过去、现在与未来
               </a>
             
           </div>
@@ -394,10 +368,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/22/how-to-become-a-designer-without-going-to-design-school/" rel="prev" title="如何自学成为一名设计师（译）">
-                如何自学成为一名设计师（译） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,7 +481,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1"><span class="nav-number">1.</span> <span class="nav-text">Step 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2"><span class="nav-number">2.</span> <span class="nav-text">Step 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kotlin-Extensions-For-Android"><span class="nav-number">3.</span> <span class="nav-text">Kotlin Extensions For Android</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-反编译-APK"><span class="nav-number">1.</span> <span class="nav-text">Step 1 反编译 APK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-修改-AndroidManifest-xml"><span class="nav-number">2.</span> <span class="nav-text">Step 2 修改 AndroidManifest.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-重新打包签名"><span class="nav-number">3.</span> <span class="nav-text">Step 3 重新打包签名</span></a></li></ol></div>
             
 
           </div>
